@@ -1,0 +1,36 @@
+/* Additional styles for the kumite video modal inside the existing modal */
+
+#modalMessage > div {
+  max-width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+#modalMessage iframe {
+  border-radius: 12px;
+}
+
+/* Override modal box max-width for video display */
+#modalBox {
+  max-width: 480px;
+  width: 90%;
+  padding: 20px;
+}
+
+/* Modal title styling for video */
+#modalTitle {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: var(--text-color);
+  text-align: center;
+}
+
+/* Modal icon for video */
+#modalIcon {
+  margin-bottom: 15px;
+  font-size: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
