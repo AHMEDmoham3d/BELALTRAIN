@@ -24,10 +24,10 @@ const playersData = {
   'Afnan022': { name: 'أفنان عادل', points: 1, absences: 0, rank: 22 },
   'yasen000': { name: 'ياسين احمد', points: 1, absences: 0, rank: 23 },
   'Hanen787': { name: 'حنين شوقى', points: 1, absences: 0, rank: 24 },
-  'Hanen787': { name: 'السيد امام', points: 1, absences: 0, rank: 25 },
-  'Hanen787': { name: 'بسمه اشرف ', points: 1, absences: 0, rank: 26 },
-  'Hanen787': { name: 'ملك احمد', points: 1, absences: 0, rank: 27 },
-  'Hanen787': { name: 'ادم عمرو', points: -1, absences: 1, rank: 28 },
+  'Elsaed025': { name: 'السيد امام', points: 1, absences: 0, rank: 25 },
+  'Basma0026': { name: 'بسمه اشرف ', points: 1, absences: 0, rank: 26 },
+  'Malak0270': { name: 'ملك احمد', points: 1, absences: 0, rank: 27 },
+  'Adam0028': { name: 'ادم عمرو', points: -1, absences: 1, rank: 28 },
   'tark111': { name: 'محمد طارق', points: 0, absences: 0, rank: 0, isAdmin: true },
   'Belal': { name: 'بلال محمد', points: 0, absences: 0, rank: 0, isAdmin: true }
 };
