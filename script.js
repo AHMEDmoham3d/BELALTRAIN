@@ -342,14 +342,14 @@ function animateElements(selectors) {
 function updateProgressBars() {
   const inputId = document.getElementById('playerId').value.trim();
   const player = playersData[inputId];
-  
+
   if (player && !player.isAdmin) {
-    // حساب نسبة التقدم الأسبوعي (عشوائي للتوضيح)
-    const weekProgress = Math.min(player.points / 100 * 10, 100);
+    // حساب نسبة التقدم الأسبوعي بناءً على النقاط فقط
+    const weekProgress = Math.min(Math.max(0, player.points) * 5, 100);
     document.getElementById('weekProgress').style.width = `${weekProgress}%`;
-    
-    // حساب تقدم الحزام (عشوائي للتوضيح)
-    const beltProgress = Math.min(player.points / 500 * 100, 100);
+
+    // حساب تقدم الحزام بناءً على النقاط فقط
+    const beltProgress = Math.min(Math.max(0, player.points) * 0.5, 100);
     document.querySelector('.belt-progress').style.width = `${beltProgress}%`;
   }
 }
