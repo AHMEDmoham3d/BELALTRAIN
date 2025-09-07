@@ -32,6 +32,20 @@ const playersData = {
   'Belal': { name: 'بلال محمد', points: 0, absences: 0, rank: 0, isAdmin: true }
 };
 
+// دالة لحساب الترتيب الديناميكي
+function getPlayerRank(playerId) {
+  const player = playersData[playerId];
+  if (!player || player.isAdmin) return 0;
+  const sorted = Object.entries(playersData)
+    .filter(([id, p]) => !p.isAdmin)
+    .sort(([idA, a], [idB, b]) => {
+      if (b.points !== a.points) return b.points - a.points;
+      return idA.localeCompare(idB);
+    });
+  const index = sorted.findIndex(([id]) => id === playerId);
+  return index !== -1 ? index + 1 : 0;
+}
+
 // تهيئة الجسيمات في الخلفية
 document.addEventListener('DOMContentLoaded', function() {
   particlesJS('particles-js', {
@@ -77,7 +91,7 @@ function login() {
       document.getElementById('playerName').textContent = player.name;
       document.getElementById('playerPoints').textContent = player.points;
       document.getElementById('playerAbsences').textContent = player.absences;
-      document.getElementById('playerRank').textContent = player.rank;
+      document.getElementById('playerRank').textContent = getPlayerRank(inputId);
       
       // إذا كان المدرب أو المسؤول
       if (player.isAdmin) {
@@ -131,9 +145,13 @@ function showAllPlayersStats() {
   `;
   
   // ترتيب اللاعبين حسب النقاط (تنازلياً)
-  const sortedPlayers = Object.values(playersData)
-    .filter(player => !player.isAdmin) // استبعاد المدربين من القائمة
-    .sort((a, b) => b.points - a.points);
+  const sortedPlayers = Object.entries(playersData)
+    .filter(([id, player]) => !player.isAdmin)
+    .sort(([idA, a], [idB, b]) => {
+      if (b.points !== a.points) return b.points - a.points;
+      return idA.localeCompare(idB);
+    })
+    .map(([id, player]) => player);
   
   // إضافة بيانات كل لاعب إلى الجدول
   sortedPlayers.forEach((player, index) => {
@@ -203,10 +221,11 @@ function logout() {
 function addPoints() {
   const inputId = document.getElementById('playerId').value.trim();
   const player = playersData[inputId];
-  
+
   if (player) {
     player.points += 10;
     document.getElementById('playerPoints').textContent = player.points;
+    document.getElementById('playerRank').textContent = getPlayerRank(inputId);
     updateProgressBars();
     showModal('نجاح', 'تم إضافة 10 نقاط بنجاح', 'success');
   }
@@ -216,10 +235,11 @@ function addPoints() {
 function addAbsence() {
   const inputId = document.getElementById('playerId').value.trim();
   const player = playersData[inputId];
-  
+
   if (player) {
     player.absences += 1;
     document.getElementById('playerAbsences').textContent = player.absences;
+    document.getElementById('playerRank').textContent = getPlayerRank(inputId);
     updateProgressBars();
     showModal('تنبيه', 'تم تسجيل غياب للاعب', 'warning');
   }
