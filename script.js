@@ -121,30 +121,28 @@ function login() {
   }
 }
 
-// عرض إحصائيات جميع اللاعبين للمدربين
 function showAllPlayersStats() {
   const profileCard = document.getElementById('profileCard');
   profileCard.style.display = 'block';
   profileCard.classList.add('animate__fadeIn');
-  
-  // إنشاء جدول لإحصائيات اللاعبين
+
+  // إنشاء جدول لإحصائيات اللاعبين مع تنسيق احترافي
   let statsHTML = `
     <div class="all-players-stats animate__animated animate__fadeIn">
       <h3><i class="fas fa-users"></i> إحصائيات جميع اللاعبين</h3>
-      <div class="stats-table-container">
-        <table class="stats-table">
-          <thead>
+      <div class="stats-table-container" style="overflow-x:auto;">
+        <table class="stats-table" style="width:100%; border-collapse: collapse; font-family: 'Tajawal', sans-serif;">
+          <thead style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white;">
             <tr>
-              <th>الترتيب</th>
-              <th>الاسم</th>
-              <th>النقاط</th>
-              <th>الغيابات</th>
+              <th style="padding: 12px 15px; border: 1px solid #ddd;">الترتيب</th>
+              <th style="padding: 12px 15px; border: 1px solid #ddd;">الاسم</th>
+              <th style="padding: 12px 15px; border: 1px solid #ddd;">النقاط</th>
+              <th style="padding: 12px 15px; border: 1px solid #ddd;">الغيابات</th>
             </tr>
           </thead>
           <tbody>
   `;
-  
-  // ترتيب اللاعبين حسب النقاط (تنازلياً)
+
   const sortedPlayers = Object.entries(playersData)
     .filter(([id, player]) => !player.isAdmin)
     .sort(([idA, a], [idB, b]) => {
@@ -152,47 +150,44 @@ function showAllPlayersStats() {
       return idA.localeCompare(idB);
     })
     .map(([id, player]) => player);
-  
-  // إضافة بيانات كل لاعب إلى الجدول
+
   sortedPlayers.forEach((player, index) => {
     statsHTML += `
-      <tr>
-        <td>${index + 1}</td>
-        <td>${player.name}</td>
-        <td>${player.points}</td>
-        <td>${player.absences}</td>
+      <tr style="border-bottom: 1px solid #ddd; text-align: center;">
+        <td style="padding: 10px 15px;">${index + 1}</td>
+        <td style="padding: 10px 15px; font-weight: 600; color: var(--primary-color);">${player.name}</td>
+        <td style="padding: 10px 15px; font-weight: 600;">${player.points}</td>
+        <td style="padding: 10px 15px; font-weight: 600; color: var(--error-color);">${player.absences}</td>
       </tr>
     `;
   });
-  
+
   statsHTML += `
           </tbody>
         </table>
       </div>
     </div>
   `;
-  
-  // إضافة الجدول إلى بطاقة الملف الشخصي
+
   profileCard.innerHTML = `
     <div class="profile-header animate__animated">
       <div class="avatar-container">
-        <div class="avatar-circle">
+        <div class="avatar-circle" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white;">
           <i class="fas fa-user-tie"></i>
         </div>
       </div>
-      <h2>${playersData[document.getElementById('playerId').value.trim()].name}</h2>
-      <div class="belt-level">
-        <div class="belt-progress" id="beltProgress"></div>
-        <span>مدرب النظام</span>
+      <h2 style="color: var(--primary-color); font-weight: 700;">${playersData[document.getElementById('playerId').value.trim()].name}</h2>
+      <div class="belt-level" style="justify-content: center; gap: 10px;">
+        <div class="belt-progress" id="beltProgress" style="width: 120px; height: 12px; border-radius: 6px;"></div>
+        <span style="font-weight: 600; color: var(--secondary-color);">مدرب النظام</span>
       </div>
     </div>
     ${statsHTML}
-    <button class="logout-btn animate__animated" onclick="logout()">
+    <button class="logout-btn animate__animated" onclick="logout()" style="margin-top: 25px; font-weight: 700;">
       <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
     </button>
   `;
-  
-  // تحريك العناصر بشكل متتابع
+
   animateElements([
     '.profile-header',
     '.all-players-stats',
