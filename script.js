@@ -8,7 +8,7 @@ const playersData = {
   'retag006': { name: 'ريتاج محمود', points: -1, absences: 1, rank: 6 },
   'judy007': { name: 'جودي محمود', points: -1, absences: 1, rank: 7 },
   'malak008': { name: 'ملك أيمن', points: 1, absences: 0, rank: 8 },
-  'remas009': { name: 'ريماس طارق', points: -1, absences: 1, rank: 9 },
+  'remas009': { name: 'ريماس طارق', points: 0, absences: 0, rank: 9 },
   'malak010': { name: 'ملك محمود السيد', points: 1, absences: 0, rank: 10 },
   'iten011': { name: 'إيتن فتحي', points: 1, absences: 0, rank: 11 },
   'mohamed012': { name: 'محمد عبد التام', points: 1, absences: 0, rank: 12 },
