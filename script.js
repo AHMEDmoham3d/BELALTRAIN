@@ -1,35 +1,35 @@
 // بيانات اللاعبين
 const playersData = {
-  'login001': { name: 'لوجين أحمد', points: 1, absences: 0, rank: 1 },
-  'adam002': { name: 'آدم هاني', points: 3, absences: 0, rank: 2 },
-  'ahmed003': { name: 'أحمد عطية', points: 1, absences: 1, rank: 3 },
-  'retag004': { name: 'ريتاج أحمد', points: 0, absences: 1, rank: 4 },
-  'omar005': { name: 'عمر عادل', points: 2, absences: 0, rank: 5 },
-  'retag006': { name: 'ريتاج محمود', points: -1, absences: 1, rank: 6 },
-  'judy007': { name: 'جودي محمود', points: -1, absences: 1, rank: 7 },
-  'malak008': { name: 'ملك أيمن', points: 2, absences: 0, rank: 8 },
-  'remas009': { name: 'ريماس طارق', points: 2, absences: 0, rank: 9 },
-  'malak010': { name: 'ملك محمود السيد', points: 2, absences: 0, rank: 10 },
-  'iten011': { name: 'إيتن فتحي', points: 3, absences: 0, rank: 11 },
-  'mohamed012': { name: 'محمد عبد التام', points: 2, absences: 0, rank: 12 },
-  'farah013': { name: 'فرح عادل', points: 2, absences: 0, rank: 13 },
-  'nada014': { name: 'ندى أنور', points: 2, absences: 0, rank: 14 },
-  'noreen015': { name: 'نورين محمود', points: 2, absences: 0, rank: 15 },
-  'sama016': { name: 'سما وليد', points: 2, absences: 0, rank: 16 },
-  'rodina017': { name: 'رودينا إسلام', points: -2, absences: 2, rank: 17 },
-  'nelly018': { name: 'نيللي محمود', points: 2, absences: 0, rank: 18 },
-  'taha019': { name: 'طه إسلام طه', points: 1, absences: 0, rank: 19 },
-  'adel020': { name: 'عادل صبري', points: 1, absences: 0, rank: 20 },
-  'mohamedsaid021': { name: 'محمد سعيد', points: 3, absences: 0, rank: 21 },
-  'Afnan022': { name: 'أفنان عادل', points: 2, absences: 0, rank: 22 },
-  'yasen000': { name: 'ياسين احمد', points: 2, absences: 0, rank: 23 },
-  'Hanen787': { name: 'حنين شوقى', points: 2, absences: 0, rank: 24 },
-  'Elsaed025': { name: 'السيد امام', points: 2, absences: 0, rank: 25 },
-  'Basma0026': { name: 'بسمه اشرف ', points: 2, absences: 0, rank: 26 },
-  'Malak0270': { name: 'ملك احمد', points: 1, absences: 0, rank: 27 },
-  'Adam0028': { name: 'ادم عمرو', points: 0, absences: 1, rank: 28 },
-  'tark111': { name: 'محمد طارق', points: 0, absences: 0, rank: 0, isAdmin: true },
-  'Belal': { name: 'بلال محمد', points: 0, absences: 0, rank: 0, isAdmin: true }
+  'login001': { name: 'لوجين أحمد', points: 1, absences: 0, rank: 1, password: 'login001' },
+  'adam002': { name: 'آدم هاني', points: 3, absences: 0, rank: 2, password: 'adam002' },
+  'ahmed003': { name: 'أحمد عطية', points: 1, absences: 1, rank: 3, password: 'ahmed003' },
+  'retag004': { name: 'ريتاج أحمد', points: 0, absences: 1, rank: 4, password: 'retag004' },
+  'omar005': { name: 'عمر عادل', points: 2, absences: 0, rank: 5, password: 'omar005' },
+  'retag006': { name: 'ريتاج محمود', points: -1, absences: 1, rank: 6, password: 'retag006' },
+  'judy007': { name: 'جودي محمود', points: -1, absences: 1, rank: 7, password: 'judy007' },
+  'malak008': { name: 'ملك أيمن', points: 2, absences: 0, rank: 8, password: 'malak008' },
+  'remas009': { name: 'ريماس طارق', points: 2, absences: 0, rank: 9, password: 'remas009' },
+  'malak010': { name: 'ملك محمود السيد', points: 2, absences: 0, rank: 10, password: 'malak010' },
+  'iten011': { name: 'إيتن فتحي', points: 3, absences: 0, rank: 11, password: 'iten011' },
+  'mohamed012': { name: 'محمد عبد التام', points: 2, absences: 0, rank: 12, password: 'mohamed012' },
+  'farah013': { name: 'فرح عادل', points: 2, absences: 0, rank: 13, password: 'farah013' },
+  'nada014': { name: 'ندى أنور', points: 2, absences: 0, rank: 14, password: 'nada014' },
+  'noreen015': { name: 'نورين محمود', points: 2, absences: 0, rank: 15, password: 'noreen015' },
+  'sama016': { name: 'سما وليد', points: 2, absences: 0, rank: 16, password: 'sama016' },
+  'rodina017': { name: 'رودينا إسلام', points: -2, absences: 2, rank: 17, password: 'rodina017' },
+  'nelly018': { name: 'نيللي محمود', points: 2, absences: 0, rank: 18, password: 'nelly018' },
+  'taha019': { name: 'طه إسلام طه', points: 1, absences: 0, rank: 19, password: 'taha019' },
+  'adel020': { name: 'عادل صبري', points: 1, absences: 0, rank: 20, password: 'adel020' },
+  'mohamedsaid021': { name: 'محمد سعيد', points: 3, absences: 0, rank: 21, password: 'mohamedsaid021' },
+  'Afnan022': { name: 'أفنان عادل', points: 2, absences: 0, rank: 22, password: 'Afnan022' },
+  'yasen000': { name: 'ياسين احمد', points: 2, absences: 0, rank: 23, password: 'yasen000' },
+  'Hanen787': { name: 'حنين شوقى', points: 2, absences: 0, rank: 24, password: 'Hanen787' },
+  'Elsaed025': { name: 'السيد امام', points: 2, absences: 0, rank: 25, password: 'Elsaed025' },
+  'Basma0026': { name: 'بسمه اشرف ', points: 2, absences: 0, rank: 26, password: 'Basma0026' },
+  'Malak0270': { name: 'ملك احمد', points: 1, absences: 0, rank: 27, password: 'Malak0270' },
+  'Adam0028': { name: 'ادم عمرو', points: 0, absences: 1, rank: 28, password: 'Adam0028' },
+  'tark111': { name: 'محمد طارق', points: 0, absences: 0, rank: 0, isAdmin: true, password: 'tark111' },
+  'Belal': { name: 'بلال محمد', points: 0, absences: 0, rank: 0, isAdmin: true, password: 'Belal' }
 };
 
 // دالة لحساب الترتيب الديناميكي
@@ -72,27 +72,49 @@ document.addEventListener('DOMContentLoaded', function() {
   setTimeout(() => {
     inputGroup.classList.add('animate__fadeInUp');
   }, 300);
+
+  // إضافة حدث لإظهار حقل كلمة المرور للمدربين
+  document.getElementById('playerId').addEventListener('input', function() {
+    const id = this.value.trim();
+    const player = playersData[id];
+    const passwordGroup = document.getElementById('passwordGroup');
+    if (player && player.isAdmin) {
+      passwordGroup.style.display = 'block';
+      passwordGroup.classList.add('animate__fadeInUp');
+    } else {
+      passwordGroup.style.display = 'none';
+    }
+  });
 });
 
 // تسجيل الدخول
 function login() {
   const inputId = document.getElementById('playerId').value.trim();
   const player = playersData[inputId];
-  
+
   if (player) {
+    // التحقق من كلمة المرور للمدربين
+    if (player.isAdmin) {
+      const password = document.getElementById('playerPassword').value.trim();
+      if (password !== player.password) {
+        showModal('خطأ', 'كلمة المرور غير صحيحة', 'error');
+        return;
+      }
+    }
+
     // إخفاء شاشة الدخول بتأثير
     const loginCard = document.getElementById('loginCard');
     loginCard.classList.add('animate__fadeOut');
-    
+
     setTimeout(() => {
       loginCard.style.display = 'none';
-      
+
       // تعبئة بيانات اللاعب
       document.getElementById('playerName').textContent = player.name;
       document.getElementById('playerPoints').textContent = player.points;
       document.getElementById('playerAbsences').textContent = player.absences;
       document.getElementById('playerRank').textContent = getPlayerRank(inputId);
-      
+
       // إذا كان المدرب أو المسؤول
       if (player.isAdmin) {
         showAllPlayersStats();
@@ -101,7 +123,7 @@ function login() {
         const profileCard = document.getElementById('profileCard');
         profileCard.style.display = 'block';
         profileCard.classList.add('animate__fadeIn');
-        
+
         // تحريك العناصر بشكل متتابع
         animateElements([
           '.profile-header',
@@ -112,7 +134,7 @@ function login() {
           '.logout-btn'
         ]);
       }
-      
+
       // تحديث شريط التقدم
       updateProgressBars();
     }, 300);
@@ -126,6 +148,9 @@ function showAllPlayersStats() {
   profileCard.style.display = 'block';
   profileCard.classList.add('animate__fadeIn');
 
+  const inputId = document.getElementById('playerId').value.trim();
+  const isBelal = inputId === 'Belal';
+
   // إنشاء جدول لإحصائيات اللاعبين مع تنسيق احترافي
   let statsHTML = `
     <div class="all-players-stats animate__animated animate__fadeIn">
@@ -138,6 +163,7 @@ function showAllPlayersStats() {
               <th style="padding: 12px 15px; border: 1px solid #ddd;">الاسم</th>
               <th style="padding: 12px 15px; border: 1px solid #ddd;">النقاط</th>
               <th style="padding: 12px 15px; border: 1px solid #ddd;">الغيابات</th>
+              ${isBelal ? '<th style="padding: 12px 15px; border: 1px solid #ddd;">كلمة المرور</th>' : ''}
             </tr>
           </thead>
           <tbody>
@@ -158,6 +184,7 @@ function showAllPlayersStats() {
         <td style="padding: 10px 15px; font-weight: 600; color: var(--primary-color);">${player.name}</td>
         <td style="padding: 10px 15px; font-weight: 600;">${player.points}</td>
         <td style="padding: 10px 15px; font-weight: 600; color: var(--error-color);">${player.absences}</td>
+        ${isBelal ? `<td style="padding: 10px 15px; font-weight: 600; color: var(--secondary-color);">${player.password}</td>` : ''}
       </tr>
     `;
   });
@@ -199,16 +226,18 @@ function showAllPlayersStats() {
 function logout() {
   const profileCard = document.getElementById('profileCard');
   profileCard.classList.add('animate__fadeOut');
-  
+
   setTimeout(() => {
     profileCard.style.display = 'none';
     const loginCard = document.getElementById('loginCard');
     loginCard.style.display = 'block';
     loginCard.classList.remove('animate__fadeOut');
     loginCard.classList.add('animate__fadeIn');
-    
-    // مسح حقل الإدخال
+
+    // مسح حقول الإدخال
     document.getElementById('playerId').value = '';
+    document.getElementById('playerPassword').value = '';
+    document.getElementById('passwordGroup').style.display = 'none';
   }, 300);
 }
 
