@@ -100,6 +100,12 @@ function login() {
         showModal('خطأ', 'كلمة المرور غير صحيحة', 'error');
         return;
       }
+
+      // إعادة توجيه بلال إلى صفحة المدرب المنفصلة
+      if (inputId === 'Belal') {
+        window.location.href = 'admin.html';
+        return;
+      }
     }
 
     // إخفاء شاشة الدخول بتأثير
