@@ -1,26 +1,16 @@
-# TODO List for Admin Request System Implementation
+# TODO List for Kumite Videos Modal Final Reversion
 
 ## Completed Tasks
-- [x] Updated admin.js with new functions for request system
-- [x] Added populatePlayerSelect() function
-- [x] Added addModification() function
-- [x] Added clearModifications() function
-- [x] Added updateModificationsDisplay() function
-- [x] Added removeModification() function
-- [x] Added sendRequest() function
-- [x] Added saveRequestToJSON() function
-- [x] Updated adminLogin() to call new initialization functions
-- [x] Modified populateAdminTable() to remove direct modification buttons
-- [x] Updated admin.html to include the new request system UI elements
+- [x] Revert kumite videos to original stacked display with controls
+- [x] Keep other sections showing "coming soon" messages
+- [x] Update openResource function to handle kumite separately
+- [x] Kumite shows scrollable videos with individual controls
+- [x] Other sections show info modal with placeholder messages
 
-## Remaining Tasks
-- [x] Add CSS styles for the new request system components
-- [ ] Test the complete functionality
-- [ ] Verify JSON file download works correctly
-- [ ] Ensure proper error handling and user feedback
-
-## Next Steps
-1. Add appropriate CSS styling for the new components
-2. Test all functions work as expected
-3. Verify the JSON download functionality
-4. Test the complete workflow from adding modifications to sending requests
+## Summary
+Successfully reverted kumite section to original display while keeping others as messages. Now:
+- Kumite: Shows stacked videos (leg1.mp4, leg2.mp4, leg3.mp4) with controls in scrollable container (max-height: 400px)
+- Kata: Shows "سيتم فتح قسم تمارين الكاتا قريباً"
+- Kihon: Shows "سيتم فتح قسم أساسيات الكيهون قريباً"
+- Rules: Shows "سيتم فتح قسم قواعد البطولات قريباً"
+- Videos are not autoplaying and have individual controls

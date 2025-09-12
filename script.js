@@ -392,7 +392,7 @@ function addAbsence() {
 // فتح مصدر تعليمي
 function openResource(type) {
   if (type === 'kumite') {
-    // Show modal with embedded Instagram reel video for kumite exercises
+    // Show full screen scrollable videos like TikTok style
     const modal = document.getElementById('modalOverlay');
     const modalBox = document.getElementById('modalBox');
     const modalIcon = document.getElementById('modalIcon');
@@ -404,12 +404,12 @@ function openResource(type) {
     modalIcon.style.backgroundColor = 'rgba(247, 127, 0, 0.1)';
     modalIcon.style.color = 'var(--accent-color)';
 
-    // Embed Instagram reel video iframe
+    // Embed local videos
     modalMessage.innerHTML = `
-      <div style="position:relative;padding-bottom:177.78%;height:0;overflow:hidden;max-width:100%;background:#000;border-radius:12px;">
-        <iframe src="https://www.instagram.com/reel/C7IDUrAIkD2/embed" 
-          style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;overflow:hidden;" 
-          scrolling="no" allowtransparency="true" allowfullscreen="true"></iframe>
+      <div class="videos-container" style="max-height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
+        <video src="leg1.mp4" controls style="width: 100%; border-radius: 12px;"></video>
+        <video src="leg2.mp4" controls style="width: 100%; border-radius: 12px;"></video>
+        <video src="leg3.mp4" controls style="width: 100%; border-radius: 12px;"></video>
       </div>
     `;
 
@@ -419,7 +419,7 @@ function openResource(type) {
   } else {
     let title = '';
     let message = '';
-    
+
     switch(type) {
       case 'kata':
         title = 'تمارين الكاتا';
@@ -434,7 +434,7 @@ function openResource(type) {
         message = 'سيتم فتح قسم قواعد البطولات قريباً';
         break;
     }
-    
+
     showModal(title, message, 'info');
   }
 }
