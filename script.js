@@ -28,12 +28,13 @@ const defaultPlayersData = {
   'Basma0026': { name: 'بسمه اشرف ', points: 2, absences: 0, rank: 26, password: 'Basma0026' },
   'Malak0270': { name: 'ملك احمد', points: 1, absences: 0, rank: 27, password: 'Malak0270' },
   'Adam0028': { name: 'ادم عمرو', points: 0, absences: 1, rank: 28, password: 'Adam0028' },
-  'tark111': { name: 'محمد طارق', points: 0, absences: 0, rank: 0, isAdmin: true, password: 'tark111' },
+  // 'tark111': { name: 'محمد طارق', points: 0, absences: 0, rank: 0, isAdmin: true, password: 'tark111' },
   'Belal': { name: 'بلال محمد', points: 0, absences: 0, rank: 0, isAdmin: true, password: 'Belal' }
 };
 
 // تحميل البيانات من localStorage أو استخدام الافتراضية
 let playersData = loadPlayersData();
+let currentPlayer = null;
 
 // دالة تحميل البيانات
 function loadPlayersData() {
@@ -41,27 +42,122 @@ function loadPlayersData() {
   return saved ? JSON.parse(saved) : defaultPlayersData;
 }
 
-// تهيئة الجسيمات في الخلفية
+// تهيئة الجسيمات في الخلفية مع إعدادات متقدمة
 document.addEventListener('DOMContentLoaded', function() {
   particlesJS('particles-js', {
     particles: {
-      number: { value: 80, density: { enable: true, value_area: 800 } },
-      color: { value: "#ffffff" },
-      shape: { type: "circle" },
-      opacity: { value: 0.5, random: true },
-      size: { value: 3, random: true },
-      line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
-      move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
+      number: {
+        value: 120,
+        density: {
+          enable: true,
+          value_area: 1000
+        }
+      },
+      color: {
+        value: ["#ffffff", "#3b82f6", "#1e3a8a", "#f97316"]
+      },
+      shape: {
+        type: ["circle", "triangle", "polygon"],
+        stroke: {
+          width: 0,
+          color: "#000000"
+        },
+        polygon: {
+          nb_sides: 6
+        }
+      },
+      opacity: {
+        value: 0.6,
+        random: true,
+        anim: {
+          enable: true,
+          speed: 1,
+          opacity_min: 0.1,
+          sync: false
+        }
+      },
+      size: {
+        value: 4,
+        random: true,
+        anim: {
+          enable: true,
+          speed: 2,
+          size_min: 0.5,
+          sync: false
+        }
+      },
+      line_linked: {
+        enable: true,
+        distance: 120,
+        color: "#ffffff",
+        opacity: 0.3,
+        width: 1,
+        shadow: {
+          enable: true,
+          color: "#ffffff",
+          blur: 5
+        }
+      },
+      move: {
+        enable: true,
+        speed: 1.5,
+        direction: "none",
+        random: true,
+        straight: false,
+        out_mode: "bounce",
+        bounce: false,
+        attract: {
+          enable: true,
+          rotateX: 600,
+          rotateY: 1200
+        }
+      }
     },
     interactivity: {
       detect_on: "canvas",
       events: {
-        onhover: { enable: true, mode: "repulse" },
-        onclick: { enable: true, mode: "push" }
+        onhover: {
+          enable: true,
+          mode: ["grab", "bubble"]
+        },
+        onclick: {
+          enable: true,
+          mode: "push"
+        },
+        resize: true
+      },
+      modes: {
+        grab: {
+          distance: 140,
+          line_linked: {
+            opacity: 0.8
+          }
+        },
+        bubble: {
+          distance: 200,
+          size: 6,
+          duration: 2,
+          opacity: 0.8,
+          speed: 3
+        },
+        repulse: {
+          distance: 200,
+          duration: 0.4
+        },
+        push: {
+          particles_nb: 4
+        },
+        remove: {
+          particles_nb: 2
+        }
       }
-    }
+    },
+    retina_detect: true
   });
-  
+
+  // إضافة عناصر عائمة إضافية للخلفية
+  createFloatingElements();
+
   // إضافة تأثير للعناصر عند التحميل
   const inputGroup = document.querySelector('.input-group');
   setTimeout(() => {
@@ -69,23 +165,71 @@ document.addEventListener('DOMContentLoaded', function() {
   }, 300);
 });
 
+// إنشاء عناصر عائمة إضافية للخلفية
+function createFloatingElements() {
+  const container = document.querySelector('.particles-container');
+  const elements = ['◯', '△', '□', '◇', '☆', '⬡', '✦', '✧', '◆', '●'];
+
+  // إنشاء الموجة الأولى من العناصر
+  for (let i = 0; i < 20; i++) {
+    const element = document.createElement('div');
+    element.className = 'floating-element';
+    element.textContent = elements[Math.floor(Math.random() * elements.length)];
+    element.style.left = Math.random() * 100 + '%';
+    element.style.top = Math.random() * 100 + '%';
+    element.style.animationDelay = Math.random() * 15 + 's';
+    element.style.animationDuration = (Math.random() * 25 + 25) + 's';
+    element.style.fontSize = (Math.random() * 20 + 15) + 'px';
+    element.style.opacity = (Math.random() * 0.3 + 0.1);
+    container.appendChild(element);
+  }
+
+  // إنشاء موجة ثانية من العناصر الأكبر
+  for (let i = 0; i < 8; i++) {
+    const element = document.createElement('div');
+    element.className = 'floating-element-large';
+    element.textContent = elements[Math.floor(Math.random() * elements.length)];
+    element.style.left = Math.random() * 100 + '%';
+    element.style.top = Math.random() * 100 + '%';
+    element.style.animationDelay = Math.random() * 20 + 's';
+    element.style.animationDuration = (Math.random() * 30 + 40) + 's';
+    container.appendChild(element);
+  }
+
+  // إنشاء خطوط متموجة
+  for (let i = 0; i < 5; i++) {
+    const wave = document.createElement('div');
+    wave.className = 'wave-line';
+    wave.style.left = Math.random() * 100 + '%';
+    wave.style.animationDelay = Math.random() * 10 + 's';
+    wave.style.animationDuration = (Math.random() * 15 + 20) + 's';
+    container.appendChild(wave);
+  }
+}
+
 // تسجيل الدخول
 function login() {
-  const inputId = document.getElementById('playerId').value.trim();
   const inputPassword = document.getElementById('playerPassword').value.trim();
-  const player = playersData[inputId];
 
-  if (player) {
-    // التحقق من كلمة المرور
-    if (inputPassword !== player.password) {
-      showModal('خطأ', 'كلمة المرور غير صحيحة', 'error');
-      return;
+  // البحث عن اللاعب بكلمة المرور
+  let foundPlayer = null;
+  let playerId = null;
+
+  for (const [id, player] of Object.entries(playersData)) {
+    if (player.password === inputPassword) {
+      foundPlayer = player;
+      playerId = id;
+      break;
     }
+  }
+
+  if (foundPlayer) {
+    currentPlayer = foundPlayer; // حفظ اللاعب الحالي
 
     // التحقق من كلمة المرور للمدربين
-    if (player.isAdmin) {
+    if (foundPlayer.isAdmin) {
       // إعادة توجيه بلال إلى صفحة المدرب المنفصلة
-      if (inputId === 'Belal') {
+      if (playerId === 'Belal') {
         window.location.href = 'admin.html';
         return;
       }
@@ -99,13 +243,13 @@ function login() {
       loginCard.style.display = 'none';
 
       // تعبئة بيانات اللاعب
-      document.getElementById('playerName').textContent = player.name;
-      document.getElementById('playerPoints').textContent = player.points;
-      document.getElementById('playerAbsences').textContent = player.absences;
-      document.getElementById('playerRank').textContent = player.rank;
+      document.getElementById('playerName').textContent = foundPlayer.name;
+      document.getElementById('playerPoints').textContent = foundPlayer.points;
+      document.getElementById('playerAbsences').textContent = foundPlayer.absences;
+      document.getElementById('playerRank').textContent = foundPlayer.rank;
 
       // إذا كان المدرب أو المسؤول
-      if (player.isAdmin) {
+      if (foundPlayer.isAdmin) {
         showAllPlayersStats();
       } else {
         // عرض شاشة الملف الشخصي العادية بتأثير
@@ -128,7 +272,7 @@ function login() {
       updateProgressBars();
     }, 300);
   } else {
-    showModal('خطأ', 'المعرف غير صحيح، يرجى المحاولة مرة أخرى', 'error');
+    showModal('خطأ', 'كلمة المرور غير صحيحة، يرجى المحاولة مرة أخرى', 'error');
   }
 }
 
@@ -187,7 +331,7 @@ function showAllPlayersStats() {
           <i class="fas fa-user-tie"></i>
         </div>
       </div>
-      <h2>${playersData[document.getElementById('playerId').value.trim()].name}</h2>
+      <h2>${currentPlayer.name}</h2>
       <div class="belt-level">
         <div class="belt-progress" id="beltProgress"></div>
         <span>مدرب النظام</span>
@@ -227,12 +371,9 @@ function logout() {
 
 // إضافة نقاط
 function addPoints() {
-  const inputId = document.getElementById('playerId').value.trim();
-  const player = playersData[inputId];
-  
-  if (player) {
-    player.points += 10;
-    document.getElementById('playerPoints').textContent = player.points;
+  if (currentPlayer) {
+    currentPlayer.points += 10;
+    document.getElementById('playerPoints').textContent = currentPlayer.points;
     updateProgressBars();
     showModal('نجاح', 'تم إضافة 10 نقاط بنجاح', 'success');
   }
@@ -240,12 +381,9 @@ function addPoints() {
 
 // إضافة غياب
 function addAbsence() {
-  const inputId = document.getElementById('playerId').value.trim();
-  const player = playersData[inputId];
-  
-  if (player) {
-    player.absences += 1;
-    document.getElementById('playerAbsences').textContent = player.absences;
+  if (currentPlayer) {
+    currentPlayer.absences += 1;
+    document.getElementById('playerAbsences').textContent = currentPlayer.absences;
     updateProgressBars();
     showModal('تنبيه', 'تم تسجيل غياب للاعب', 'warning');
   }
@@ -367,16 +505,13 @@ function animateElements(selectors) {
 
 // تحديث أشرطة التقدم
 function updateProgressBars() {
-  const inputId = document.getElementById('playerId').value.trim();
-  const player = playersData[inputId];
-  
-  if (player && !player.isAdmin) {
+  if (currentPlayer && !currentPlayer.isAdmin) {
     // حساب نسبة التقدم الأسبوعي (عشوائي للتوضيح)
-    const weekProgress = Math.min(player.points / 100 * 10, 100);
+    const weekProgress = Math.min(currentPlayer.points / 100 * 10, 100);
     document.getElementById('weekProgress').style.width = `${weekProgress}%`;
-    
+
     // حساب تقدم الحزام (عشوائي للتوضيح)
-    const beltProgress = Math.min(player.points / 500 * 100, 100);
+    const beltProgress = Math.min(currentPlayer.points / 500 * 100, 100);
     document.querySelector('.belt-progress').style.width = `${beltProgress}%`;
   }
 }
