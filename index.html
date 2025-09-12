@@ -136,14 +136,15 @@
     </div>
   </div>
 
-  <div class="modal-overlay" id="modalOverlay" style="display:none; background: #000;">
-    <div class="modal-box animate__animated" id="modalBox" style="width: 100vw; height: 100vh; max-width: none; max-height: none; border-radius: 0; padding: 0; background: #000;">
-      <div class="modal-icon" id="modalIcon" style="display:none;">
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay" style="display: none;">
+    <div class="modal-box animate__animated" id="modalBox">
+      <div class="modal-icon" id="modalIcon">
         <i class="fas fa-exclamation"></i>
       </div>
-      <h3 class="modal-title" id="modalTitle" style="display:none;">تنبيه</h3>
-      <div id="modalMessage" style="height: 100vh; overflow-y: auto; display: flex; flex-direction: column; scroll-snap-type: y mandatory; -webkit-overflow-scrolling: touch; padding: 0; background: #000;"></div>
-      <button class="modal-btn" onclick="closeModal()" style="position: fixed; top: 20px; right: 20px; z-index: 1000; background: rgba(255,255,255,0.2); border: none; color: white; font-size: 1.5rem; border-radius: 50%; width: 50px; height: 50px; line-height: 50px; text-align: center; cursor: pointer; backdrop-filter: blur(10px);">×</button>
+      <h3 class="modal-title" id="modalTitle">تنبيه</h3>
+      <div class="modal-message" id="modalMessage">رسالة التنبيه</div>
+      <button class="modal-btn" onclick="closeModal()">إغلاق</button>
     </div>
   </div>
 
