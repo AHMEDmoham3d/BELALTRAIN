@@ -35,6 +35,9 @@ const defaultPlayersData = {
 // تحميل البيانات من localStorage أو استخدام الافتراضية
 let playersData = loadPlayersData();
 
+// متغيرات للطلبات الحالية
+let currentModifications = [];
+
 // دالة تحميل البيانات
 function loadPlayersData() {
   const saved = localStorage.getItem('karatePlayersData');
@@ -44,6 +47,18 @@ function loadPlayersData() {
 // دالة حفظ البيانات
 function savePlayersData() {
   localStorage.setItem('karatePlayersData', JSON.stringify(playersData));
+}
+
+// دالة تحميل الطلبات الحالية
+function loadCurrentModifications() {
+  const saved = localStorage.getItem('currentModifications');
+  currentModifications = saved ? JSON.parse(saved) : [];
+  updateModificationsDisplay();
+}
+
+// دالة حفظ الطلبات الحالية
+function saveCurrentModifications() {
+  localStorage.setItem('currentModifications', JSON.stringify(currentModifications));
 }
 
 // دالة لحساب الترتيب الديناميكي
@@ -113,6 +128,12 @@ function adminLogin() {
       // ملء الجدول
       populateAdminTable();
 
+      // ملء قائمة اللاعبين
+      populatePlayerSelect();
+
+      // تحميل الطلبات الحالية
+      loadCurrentModifications();
+
       // تحديث شريط التقدم
       updateAdminProgress();
     }, 300);
@@ -121,7 +142,27 @@ function adminLogin() {
   }
 }
 
-// ملء جدول اللاعبين
+// ملء قائمة اللاعبين في الـ select
+function populatePlayerSelect() {
+  const select = document.getElementById('playerSelect');
+  select.innerHTML = '<option value="">اختر اللاعب</option>';
+
+  const sortedPlayers = Object.entries(playersData)
+    .filter(([id, player]) => !player.isAdmin)
+    .sort(([idA, a], [idB, b]) => {
+      if (b.points !== a.points) return b.points - a.points;
+      return idA.localeCompare(idB);
+    });
+
+  sortedPlayers.forEach(([id, player]) => {
+    const option = document.createElement('option');
+    option.value = id;
+    option.textContent = `${player.name} (${id})`;
+    select.appendChild(option);
+  });
+}
+
+// ملء جدول اللاعبين (للعرض فقط)
 function populateAdminTable() {
   const tableBody = document.getElementById('adminPlayersTable');
   tableBody.innerHTML = '';
@@ -144,42 +185,150 @@ function populateAdminTable() {
       <td style="padding: 10px 15px; font-weight: 600;">${index + 1}</td>
       <td style="padding: 10px 15px; font-weight: 600;">${player.points}</td>
       <td style="padding: 10px 15px; font-weight: 600; color: var(--error-color);">${player.absences}</td>
-      <td style="padding: 10px 15px; font-weight: 600; color: var(--secondary-color);">${player.password}</td>
-      <td style="padding: 10px 15px;">
-        <input type="number" id="points-${id}" placeholder="نقاط" style="width: 60px; text-align: center;">
-        <button onclick="addPoints('${id}')" style="margin-left: 5px; padding: 5px 10px; background: var(--success-color); color: white; border: none; border-radius: 3px; cursor: pointer;">إضافة</button>
-      </td>
-      <td style="padding: 10px 15px;">
-        <button onclick="addAbsence('${id}')" style="padding: 5px 10px; background: var(--error-color); color: white; border: none; border-radius: 3px; cursor: pointer;">غياب</button>
-      </td>
     `;
 
     tableBody.appendChild(row);
   });
 }
 
-// إضافة نقاط
-function addPoints(playerId) {
-  const pointsInput = document.getElementById(`points-${playerId}`);
-  const pointsToAdd = parseInt(pointsInput.value) || 0;
+// إضافة تعديل للطلب الحالي
+function addModification() {
+  const playerId = document.getElementById('playerSelect').value;
+  const modificationType = document.getElementById('modificationType').value;
+  const modificationValue = parseInt(document.getElementById('modificationValue').value) || 0;
 
-  if (pointsToAdd > 0) {
-    playersData[playerId].points += pointsToAdd;
-    savePlayersData();
-    populateAdminTable();
-    showModal('نجاح', `تم إضافة ${pointsToAdd} نقطة للاعب ${playersData[playerId].name}`, 'success');
-    pointsInput.value = '';
-  } else {
-    showModal('خطأ', 'يرجى إدخال عدد نقاط صحيح', 'error');
+  if (!playerId) {
+    showModal('خطأ', 'يرجى اختيار اللاعب', 'error');
+    return;
   }
+
+  if (!modificationType) {
+    showModal('خطأ', 'يرجى اختيار نوع التعديل', 'error');
+    return;
+  }
+
+  if (modificationValue <= 0) {
+    showModal('خطأ', 'يرجى إدخال قيمة صحيحة', 'error');
+    return;
+  }
+
+  const player = playersData[playerId];
+  const modification = {
+    id: Date.now(),
+    playerId: playerId,
+    playerName: player.name,
+    type: modificationType,
+    value: modificationValue,
+    timestamp: new Date().toISOString()
+  };
+
+  currentModifications.push(modification);
+  saveCurrentModifications();
+  updateModificationsDisplay();
+
+  // مسح الحقول
+  document.getElementById('playerSelect').value = '';
+  document.getElementById('modificationType').value = '';
+  document.getElementById('modificationValue').value = '';
+
+  showModal('نجاح', 'تم إضافة التعديل للطلب', 'success');
 }
 
-// إضافة غياب
-function addAbsence(playerId) {
-  playersData[playerId].absences += 1;
-  savePlayersData();
-  populateAdminTable();
-  showModal('تنبيه', `تم تسجيل غياب للاعب ${playersData[playerId].name}`, 'warning');
+// مسح جميع التعديلات
+function clearModifications() {
+  currentModifications = [];
+  saveCurrentModifications();
+  updateModificationsDisplay();
+  showModal('تنبيه', 'تم مسح جميع التعديلات', 'warning');
+}
+
+// تحديث عرض التعديلات الحالية
+function updateModificationsDisplay() {
+  const container = document.getElementById('modificationsList');
+
+  if (currentModifications.length === 0) {
+    container.innerHTML = '<p style="text-align: center; color: var(--text-color); margin: 0;">لا توجد طلبات حالية</p>';
+    return;
+  }
+
+  let html = '';
+  currentModifications.forEach(mod => {
+    const typeText = mod.type === 'points' ? 'إضافة نقاط' :
+                    mod.type === 'absence' ? 'تسجيل غياب' : 'تسجيل حضور';
+    const icon = mod.type === 'points' ? 'fas fa-plus' :
+                mod.type === 'absence' ? 'fas fa-times' : 'fas fa-check';
+
+    html += `
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid var(--border-color);">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <i class="${icon}" style="color: var(--primary-color);"></i>
+          <div>
+            <div style="font-weight: 600; color: var(--primary-color);">${mod.playerName}</div>
+            <div style="font-size: 0.9rem; color: var(--text-color);">${typeText}: ${mod.value}</div>
+          </div>
+        </div>
+        <button onclick="removeModification(${mod.id})" style="background: var(--error-color); color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
+}
+
+// إزالة تعديل محدد
+function removeModification(id) {
+  currentModifications = currentModifications.filter(mod => mod.id !== id);
+  saveCurrentModifications();
+  updateModificationsDisplay();
+}
+
+// إرسال الطلب
+function sendRequest() {
+  if (currentModifications.length === 0) {
+    showModal('خطأ', 'لا توجد تعديلات للإرسال', 'error');
+    return;
+  }
+
+  // إنشاء كائن الطلب
+  const request = {
+    id: Date.now(),
+    timestamp: new Date().toISOString(),
+    modifications: currentModifications,
+    status: 'pending'
+  };
+
+  // حفظ الطلب في ملف JSON (محاكاة)
+  saveRequestToJSON(request);
+
+  // مسح التعديلات الحالية
+  currentModifications = [];
+  saveCurrentModifications();
+  updateModificationsDisplay();
+
+  showModal('نجاح', 'تم إرسال الطلب بنجاح', 'success');
+}
+
+// حفظ الطلب في ملف JSON
+function saveRequestToJSON(request) {
+  // في بيئة حقيقية، سيتم إرسال هذا إلى الخادم
+  // هنا سنحفظه في localStorage كمحاكاة
+  const existingRequests = JSON.parse(localStorage.getItem('adminRequests') || '[]');
+  existingRequests.push(request);
+  localStorage.setItem('adminRequests', JSON.stringify(existingRequests));
+
+  // يمكنك أيضاً تنزيل الملف كـ JSON
+  const dataStr = JSON.stringify(request, null, 2);
+  const dataBlob = new Blob([dataStr], {type: 'application/json'});
+  const url = URL.createObjectURL(dataBlob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `admin_request_${request.id}.json`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
 }
 
 // تحديث شريط التقدم للمدرب
