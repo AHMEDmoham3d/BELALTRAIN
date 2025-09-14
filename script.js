@@ -1,4 +1,3 @@
-// بيانات اللاعبين الافتراضية
 const defaultPlayersData = {
   'login001': { name: 'لوجين أحمد', points: 1, absences: 0, rank: 1, password: 'login001' },
   'adam002': { name: 'آدم هاني', points: 3, absences: 0, rank: 2, password: 'adam002' },
@@ -47,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
   particlesJS('particles-js', {
     particles: {
       number: {
-        value: 120,
+        value: 60,
         density: {
           enable: true,
           value_area: 1000
@@ -404,31 +403,35 @@ function openResource(type) {
     modalIcon.style.backgroundColor = 'rgba(247, 127, 0, 0.1)';
     modalIcon.style.color = 'var(--accent-color)';
 
-    // Embed local videos
- modalMessage.innerHTML = `
-  <div class="videos-container" 
-       style="max-height: 400px; 
-              overflow-y: scroll; 
-              display: flex; 
-              flex-direction: column; 
-              gap: 10px; 
-              padding-right: 10px;">
-    <video src="leg1.mp4" controls style="width: 100%; border-radius: 12px;"></video>
-    <video src="leg2.mp4" controls style="width: 100%; border-radius: 12px;"></video>
-    <video src="leg3.mp4" controls style="width: 100%; border-radius: 12px;"></video>
-    <video src="leg5.mp4" controls style="width: 100%; border-radius: 12px;"></video>
-    <video src="leg6.mp4" controls style="width: 100%; border-radius: 12px;"></video>
-    <video src="leg7.mp4" controls style="width: 100%; border-radius: 12px;"></video>
-    <video src="leg8.mp4" controls style="width: 100%; border-radius: 12px;"></video>
-    <video src="leg9.mp4" controls style="width: 100%; border-radius: 12px;"></video>
-    <video src="leg10.mp4" controls style="width: 100%; border-radius: 12px;"></video>
-  </div>
-`;
-
+    // Embed local videos with lazy loading
+    const videoSources = ['leg1.mp4', 'leg2.mp4', 'leg3.mp4', 'leg5.mp4', 'leg6.mp4', 'leg7.mp4', 'leg8.mp4', 'leg9.mp4', 'leg10.mp4'];
+    modalMessage.innerHTML = `
+      <div class="videos-container"
+           style="max-height: 400px;
+                  overflow-y: scroll;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+                  padding-right: 10px;">
+        ${videoSources.map(src => `
+          <div class="video-wrapper" style="position: relative;">
+            <video data-src="${src}" controls style="width: 100%; border-radius: 12px; display: none;"></video>
+            <div class="video-placeholder" style="width: 100%; height: 200px; background: #f0f0f0; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #666;">
+              <i class="fas fa-play-circle" style="font-size: 48px;"></i>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
 
     modal.style.display = 'flex';
     modalBox.classList.remove('animate__fadeOut');
     modalBox.classList.add('animate__bounceIn');
+
+    // Initialize lazy loading for videos
+    setTimeout(() => {
+      lazyLoadVideos();
+    }, 100);
   } else {
     let title = '';
     let message = '';
@@ -526,5 +529,48 @@ function updateProgressBars() {
     // حساب تقدم الحزام (عشوائي للتوضيح)
     const beltProgress = Math.min(currentPlayer.points / 500 * 100, 100);
     document.querySelector('.belt-progress').style.width = `${beltProgress}%`;
+  }
+}
+
+// تحميل الفيديوهات بشكل كسول (Lazy Loading)
+function lazyLoadVideos() {
+  const videoWrappers = document.querySelectorAll('.video-wrapper');
+
+  if ('IntersectionObserver' in window) {
+    const videoObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const wrapper = entry.target;
+          const video = wrapper.querySelector('video');
+          const placeholder = wrapper.querySelector('.video-placeholder');
+
+          if (video && video.dataset.src) {
+            video.src = video.dataset.src;
+            video.style.display = 'block';
+            placeholder.style.display = 'none';
+            videoObserver.unobserve(wrapper);
+          }
+        }
+      });
+    }, {
+      root: document.querySelector('.videos-container'),
+      rootMargin: '50px 0px',
+      threshold: 0.1
+    });
+
+    videoWrappers.forEach(wrapper => {
+      videoObserver.observe(wrapper);
+    });
+  } else {
+    // Fallback for browsers without IntersectionObserver
+    videoWrappers.forEach(wrapper => {
+      const video = wrapper.querySelector('video');
+      const placeholder = wrapper.querySelector('.video-placeholder');
+      if (video && video.dataset.src) {
+        video.src = video.dataset.src;
+        video.style.display = 'block';
+        placeholder.style.display = 'none';
+      }
+    });
   }
 }

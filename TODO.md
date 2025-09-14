@@ -1,19 +1,24 @@
-# TODO List for Kumite Videos Modal Original Regular Modal Reversion
+# Performance Optimization Plan for Karate Site
 
-## Completed Tasks
-- [x] Revert kumite videos to original regular modal display (not full-screen)
-- [x] Fix black modal issue by restoring proper modal structure
-- [x] Keep other sections showing "coming soon" messages
-- [x] Restore original videos-container with flex layout and gap spacing
-- [x] Kumite shows videos in flex container with 10px gap between videos
-- [x] Other sections show info modal with placeholder messages
+## Tasks to Complete
+- [x] Reduce particles count in particles.js config to improve CPU performance
+- [x] Implement lazy loading for videos in kumite modal to prevent loading all videos at once
+- [x] Add loading placeholders/indicators for videos
+- [ ] Optimize script loading and defer heavy animations if needed
+- [ ] Test the site performance after changes
 
-## Summary
-Successfully reverted kumite section to original regular modal display while fixing the black modal issue. Now:
-- Kumite: Shows stacked videos (leg1.mp4, leg2.mp4, leg3.mp4, leg5.mp4, leg6.mp4, leg7.mp4, leg8.mp4, leg9.mp4, leg10.mp4) with controls in flex container (max-height: 70vh, gap: 10px)
-- Kata: Shows "سيتم فتح قسم تمارين الكاتا قريباً"
-- Kihon: Shows "سيتم فتح قسم أساسيات الكيهون قريباً"
-- Rules: Shows "سيتم فتح قسم قواعد البطولات قريباً"
-- Videos are not autoplaying and have individual controls
-- Modal structure restored to original regular appearance (not full-screen black)
-- Increased modal height to 70vh to ensure all videos are visible or scrollable
+## Information Gathered
+- Site uses particles.js with 120 particles causing high CPU usage
+- Videos (9 total) are loaded simultaneously in modal causing slow loading
+- No lazy loading or optimization for video playback
+
+## Plan Details
+1. **Particles Optimization**: Reduce particle count from 120 to 50-60 for better performance
+2. **Video Lazy Loading**: Use Intersection Observer API to load video src only when video element is visible in viewport
+3. **Loading UI**: Add skeleton loaders or spinners for videos while loading
+4. **Script Deferral**: Move non-critical scripts to load after page load
+
+## Dependent Files
+- script.js: Particles config and video loading logic
+- index.html: Script loading order
+- style.css: Loading placeholder styles (if needed)
