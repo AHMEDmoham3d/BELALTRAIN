@@ -405,19 +405,26 @@ function openResource(type) {
     modalIcon.style.color = 'var(--accent-color)';
 
     // Embed local videos
-    modalMessage.innerHTML = `
-      <div class="videos-container" style="height: auto; max-height: none; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
-        <video src="leg1.mp4" controls style="width: 100%; border-radius: 12px;"></video>
-        <video src="leg2.mp4" controls style="width: 100%; border-radius: 12px;"></video>
-        <video src="leg3.mp4" controls style="width: 100%; border-radius: 12px;"></video>
-        <video src="leg5.mp4" controls style="width: 100%; border-radius: 12px;"></video>
-        <video src="leg6.mp4" controls style="width: 100%; border-radius: 12px;"></video>
-        <video src="leg7.mp4" controls style="width: 100%; border-radius: 12px;"></video>
-        <video src="leg8.mp4" controls style="width: 100%; border-radius: 12px;"></video>
-        <video src="leg9.mp4" controls style="width: 100%; border-radius: 12px;"></video>
-        <video src="leg10.mp4" controls style="width: 100%; border-radius: 12px;"></video>
-      </div>
-    `;
+ modalMessage.innerHTML = `
+  <div class="videos-container" 
+       style="max-height: 400px; 
+              overflow-y: scroll; 
+              display: flex; 
+              flex-direction: column; 
+              gap: 10px; 
+              padding-right: 10px;">
+    <video src="leg1.mp4" controls style="width: 100%; border-radius: 12px;"></video>
+    <video src="leg2.mp4" controls style="width: 100%; border-radius: 12px;"></video>
+    <video src="leg3.mp4" controls style="width: 100%; border-radius: 12px;"></video>
+    <video src="leg5.mp4" controls style="width: 100%; border-radius: 12px;"></video>
+    <video src="leg6.mp4" controls style="width: 100%; border-radius: 12px;"></video>
+    <video src="leg7.mp4" controls style="width: 100%; border-radius: 12px;"></video>
+    <video src="leg8.mp4" controls style="width: 100%; border-radius: 12px;"></video>
+    <video src="leg9.mp4" controls style="width: 100%; border-radius: 12px;"></video>
+    <video src="leg10.mp4" controls style="width: 100%; border-radius: 12px;"></video>
+  </div>
+`;
+
 
     modal.style.display = 'flex';
     modalBox.classList.remove('animate__fadeOut');
