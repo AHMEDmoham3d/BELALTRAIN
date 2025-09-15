@@ -1,65 +1,61 @@
-// بيانات اللاعبين الافتراضية
 const defaultPlayersData = {
-  'login001': { name: 'لوجين أحمد', points: 1, absences: 0, rank: 1, password: 'login001' },
-  'adam002': { name: 'آدم هاني', points: 3, absences: 0, rank: 2, password: 'adam002' },
-  'ahmed003': { name: 'أحمد عطية', points: 1, absences: 1, rank: 3, password: 'ahmed003' },
-  'retag004': { name: 'ريتاج أحمد', points: 0, absences: 1, rank: 4, password: 'retag004' },
-  'omar005': { name: 'عمر عادل', points: 2, absences: 0, rank: 5, password: 'omar005' },
-  'retag006': { name: 'ريتاج محمود', points: -1, absences: 1, rank: 6, password: 'retag006' },
-  'judy007': { name: 'جودي محمود', points: -1, absences: 1, rank: 7, password: 'judy007' },
-  'malak008': { name: 'ملك أيمن', points: 2, absences: 0, rank: 8, password: 'malak008' },
-  'remas009': { name: 'ريماس طارق', points: 2, absences: 0, rank: 9, password: 'remas009' },
-  'malak010': { name: 'ملك محمود السيد', points: 2, absences: 0, rank: 10, password: 'malak010' },
-  'iten011': { name: 'إيتن فتحي', points: 3, absences: 0, rank: 11, password: 'iten011' },
-  'mohamed012': { name: 'محمد عبد التام', points: 2, absences: 0, rank: 12, password: 'mohamed012' },
-  'farah013': { name: 'فرح عادل', points: 2, absences: 0, rank: 13, password: 'farah013' },
-  'nada014': { name: 'ندى أنور', points: 2, absences: 0, rank: 14, password: 'nada014' },
-  'noreen015': { name: 'نورين محمود', points: 2, absences: 0, rank: 15, password: 'noreen015' },
-  'sama016': { name: 'سما وليد', points: 2, absences: 0, rank: 16, password: 'sama016' },
-  'rodina017': { name: 'رودينا إسلام', points: -2, absences: 2, rank: 17, password: 'rodina017' },
-  'nelly018': { name: 'نيللي محمود', points: 2, absences: 0, rank: 18, password: 'nelly018' },
-  'taha019': { name: 'طه إسلام طه', points: 1, absences: 0, rank: 19, password: 'taha019' },
-  'adel020': { name: 'عادل صبري', points: 1, absences: 0, rank: 20, password: 'adel020' },
-  'mohamedsaid021': { name: 'محمد سعيد', points: 3, absences: 0, rank: 21, password: 'mohamedsaid021' },
-  'Afnan022': { name: 'أفنان عادل', points: 2, absences: 0, rank: 22, password: 'Afnan022' },
-  'yasen000': { name: 'ياسين احمد', points: 2, absences: 0, rank: 23, password: 'yasen000' },
-  'Hanen787': { name: 'حنين شوقى', points: 2, absences: 0, rank: 24, password: 'Hanen787' },
-  'Elsaed025': { name: 'السيد امام', points: 2, absences: 0, rank: 25, password: 'Elsaed025' },
-  'Basma0026': { name: 'بسمه اشرف ', points: 2, absences: 0, rank: 26, password: 'Basma0026' },
-  'Malak0270': { name: 'ملك احمد', points: 1, absences: 0, rank: 27, password: 'Malak0270' },
-  'Adam0028': { name: 'ادم عمرو', points: 0, absences: 1, rank: 28, password: 'Adam0028' },
-  'tark111': { name: 'محمد طارق', points: 0, absences: 0, rank: 0, isAdmin: true, password: 'tark111' },
+  'farah013': { name: 'فرح عادل', points: 5, absences: 0, rank: 1, password: 'farah013' },
+  'iten011': { name: 'إيتن فتحي', points: 5, absences: 0, rank: 2, password: 'iten011' },
+  'adam002': { name: 'آدم هاني', points: 4, absences: 1, rank: 3, password: 'adam002' },
+  'Afnan022': { name: 'أفنان عادل', points: 4, absences: 0, rank: 4, password: 'Afnan022' },
+  'mohamed012': { name: 'محمد عبد التام', points: 4, absences: 0, rank: 5, password: 'mohamed012' },
+  'mohamedsaid021': { name: 'محمد سعيد', points: 4, absences: 0, rank: 6, password: 'mohamedsaid021' },
+  'nada014': { name: 'ندى أنور', points: 4, absences: 0, rank: 7, password: 'nada014' },
+  'yasen000': { name: 'ياسين احمد', points: 4, absences: 0, rank: 8, password: 'yasen000' },
+  'ahmed003': { name: 'أحمد عطية', points: 3, absences: 1, rank: 9, password: 'ahmed003' },
+  'adel020': { name: 'عادل صبري', points: 3, absences: 1, rank: 10, password: 'adel020' },
+  'Elsaed025': { name: 'السيد امام', points: 3, absences: 0, rank: 11, password: 'Elsaed025' },
+  'Hanen787': { name: 'حنين شوقى', points: 3, absences: 0, rank: 12, password: 'Hanen787' },
+  'login001': { name: 'لوجين أحمد', points: 3, absences: 2, rank: 13, password: 'login001' },
+  'malak010': { name: 'ملك محمود السيد', points: 3, absences: 0, rank: 14, password: 'malak010' },
+  'nelly018': { name: 'نيللي محمود', points: 3, absences: 0, rank: 15, password: 'nelly018' },
+  'noreen015': { name: 'نورين محمود', points: 3, absences: 0, rank: 16, password: 'noreen015' },
+  'omar005': { name: 'عمر عادل', points: 3, absences: 0, rank: 17, password: 'omar005' },
+  'remas009': { name: 'ريماس طارق', points: 3, absences: 0, rank: 18, password: 'remas009' },
+  'retag004': { name: 'ريتاج أحمد', points: 3, absences: 1, rank: 19, password: 'retag004' },
+  'sama016': { name: 'سما وليد', points: 3, absences: 0, rank: 20, password: 'sama016' },
+  'Basma0026': { name: 'بسمه اشرف ', points: 3, absences: 1, rank: 21, password: 'Basma0026' },
+  'malak008': { name: 'ملك أيمن', points: 2, absences: 0, rank: 22, password: 'malak008' },
+  'retag006': { name: 'ريتاج محمود', points: 2, absences: 1, rank: 23, password: 'retag006' },
+  'judy007': { name: 'جودي محمود', points: 1, absences: 1, rank: 24, password: 'judy007' },
+  'taha019': { name: 'طه إسلام طه', points: 1, absences: 1, rank: 25, password: 'taha019' },
+  'Adam0028': { name: 'ادم عمرو', points: 1, absences: 1, rank: 26, password: 'Adam0028' },
+  'Malak0270': { name: 'ملك احمد', points: 1, absences: 2, rank: 27, password: 'Malak0270' },
+  'rodina017': { name: 'رودينا إسلام', points: -3, absences: 3, rank: 28, password: 'rodina017' },
   'Belal': { name: 'بلال محمد', points: 0, absences: 0, rank: 0, isAdmin: true, password: 'Belal' }
 };
+// استخدام البيانات الافتراضية
+let playersData = defaultPlayersData;
 
-// تحميل البيانات من localStorage أو استخدام الافتراضية
-let playersData = loadPlayersData();
+  // إنشاء قناة BroadcastChannel للمزامنة الفورية
+const broadcastChannel = new BroadcastChannel('karate-club-updates');
+
+// الاستماع للتحديثات من النوافذ الأخرى
+broadcastChannel.onmessage = function(event) {
+  const data = event.data;
+  if (data.type === 'update') {
+    // تحديث البيانات المحلية
+    const player = Object.values(playersData).find(p => p.password === data.playerId);
+    if (player) {
+      player.points = data.points;
+      player.absences = data.absences;
+      if (data.rank !== undefined) {
+        player.rank = data.rank;
+      }
+
+      // تحديث الجدول
+      populateAdminTable();
+    }
+  }
+};
 
 // متغيرات للطلبات الحالية
 let currentModifications = [];
-
-// دالة تحميل البيانات
-function loadPlayersData() {
-  const saved = localStorage.getItem('karatePlayersData');
-  return saved ? JSON.parse(saved) : defaultPlayersData;
-}
-
-// دالة حفظ البيانات
-function savePlayersData() {
-  localStorage.setItem('karatePlayersData', JSON.stringify(playersData));
-}
-
-// دالة تحميل الطلبات الحالية
-function loadCurrentModifications() {
-  const saved = localStorage.getItem('currentModifications');
-  currentModifications = saved ? JSON.parse(saved) : [];
-  updateModificationsDisplay();
-}
-
-// دالة حفظ الطلبات الحالية
-function saveCurrentModifications() {
-  localStorage.setItem('currentModifications', JSON.stringify(currentModifications));
-}
 
 // دالة لحساب الترتيب الديناميكي
 function getPlayerRank(playerId) {
@@ -131,9 +127,6 @@ function adminLogin() {
       // ملء قائمة اللاعبين
       populatePlayerSelect();
 
-      // تحميل الطلبات الحالية
-      loadCurrentModifications();
-
       // تحديث شريط التقدم
       updateAdminProgress();
     }, 300);
@@ -170,11 +163,11 @@ function populateAdminTable() {
   const sortedPlayers = Object.entries(playersData)
     .filter(([id, player]) => !player.isAdmin)
     .sort(([idA, a], [idB, b]) => {
-      if (b.points !== a.points) return b.points - a.points;
-      return idA.localeCompare(idB);
+      if (a.rank !== b.rank) return a.rank - b.rank;
+      return a.name.localeCompare(b.name);
     });
 
-  sortedPlayers.forEach(([id, player], index) => {
+  sortedPlayers.forEach(([id, player]) => {
     const row = document.createElement('tr');
     row.style.borderBottom = '1px solid #ddd';
     row.style.textAlign = 'center';
@@ -182,7 +175,7 @@ function populateAdminTable() {
     row.innerHTML = `
       <td style="padding: 10px 15px; font-weight: 600;">${id}</td>
       <td style="padding: 10px 15px; font-weight: 600; color: var(--primary-color);">${player.name}</td>
-      <td style="padding: 10px 15px; font-weight: 600;">${index + 1}</td>
+      <td style="padding: 10px 15px; font-weight: 600;">${player.rank}</td>
       <td style="padding: 10px 15px; font-weight: 600;">${player.points}</td>
       <td style="padding: 10px 15px; font-weight: 600; color: var(--error-color);">${player.absences}</td>
     `;
@@ -223,7 +216,6 @@ function addModification() {
   };
 
   currentModifications.push(modification);
-  saveCurrentModifications();
   updateModificationsDisplay();
 
   // مسح الحقول
@@ -237,7 +229,6 @@ function addModification() {
 // مسح جميع التعديلات
 function clearModifications() {
   currentModifications = [];
-  saveCurrentModifications();
   updateModificationsDisplay();
   showModal('تنبيه', 'تم مسح جميع التعديلات', 'warning');
 }
@@ -254,9 +245,11 @@ function updateModificationsDisplay() {
   let html = '';
   currentModifications.forEach(mod => {
     const typeText = mod.type === 'points' ? 'إضافة نقاط' :
-                    mod.type === 'absence' ? 'تسجيل غياب' : 'تسجيل حضور';
+                    mod.type === 'absence' ? 'تسجيل غياب' :
+                    mod.type === 'attendance' ? 'تسجيل حضور' : 'تحديد الترتيب';
     const icon = mod.type === 'points' ? 'fas fa-plus' :
-                mod.type === 'absence' ? 'fas fa-times' : 'fas fa-check';
+                mod.type === 'absence' ? 'fas fa-times' :
+                mod.type === 'attendance' ? 'fas fa-check' : 'fas fa-trophy';
 
     html += `
       <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid var(--border-color);">
@@ -280,7 +273,6 @@ function updateModificationsDisplay() {
 // إزالة تعديل محدد
 function removeModification(id) {
   currentModifications = currentModifications.filter(mod => mod.id !== id);
-  saveCurrentModifications();
   updateModificationsDisplay();
 }
 
@@ -291,6 +283,22 @@ function sendRequest() {
     return;
   }
 
+  // تطبيق التعديلات على البيانات المحلية
+  currentModifications.forEach(mod => {
+    if (mod.type === 'points') {
+      playersData[mod.playerId].points += mod.value;
+    } else if (mod.type === 'absence') {
+      playersData[mod.playerId].absences += mod.value;
+    } else if (mod.type === 'attendance') {
+      playersData[mod.playerId].absences = Math.max(0, playersData[mod.playerId].absences - mod.value);
+    } else if (mod.type === 'rank') {
+      playersData[mod.playerId].rank = mod.value;
+    }
+  });
+
+  // تحديث الجدول
+  populateAdminTable();
+
   // إنشاء كائن الطلب
   const request = {
     id: Date.now(),
@@ -299,26 +307,7 @@ function sendRequest() {
     status: 'pending'
   };
 
-  // حفظ الطلب في ملف JSON (محاكاة)
-  saveRequestToJSON(request);
-
-  // مسح التعديلات الحالية
-  currentModifications = [];
-  saveCurrentModifications();
-  updateModificationsDisplay();
-
-  showModal('نجاح', 'تم إرسال الطلب بنجاح', 'success');
-}
-
-// حفظ الطلب في ملف JSON
-function saveRequestToJSON(request) {
-  // في بيئة حقيقية، سيتم إرسال هذا إلى الخادم
-  // هنا سنحفظه في localStorage كمحاكاة
-  const existingRequests = JSON.parse(localStorage.getItem('adminRequests') || '[]');
-  existingRequests.push(request);
-  localStorage.setItem('adminRequests', JSON.stringify(existingRequests));
-
-  // يمكنك أيضاً تنزيل الملف كـ JSON
+  // تنزيل الطلب كملف JSON
   const dataStr = JSON.stringify(request, null, 2);
   const dataBlob = new Blob([dataStr], {type: 'application/json'});
   const url = URL.createObjectURL(dataBlob);
@@ -329,6 +318,12 @@ function saveRequestToJSON(request) {
   link.click();
   document.body.removeChild(link);
   URL.revokeObjectURL(url);
+
+  // مسح التعديلات الحالية
+  currentModifications = [];
+  updateModificationsDisplay();
+
+  showModal('نجاح', 'تم إرسال الطلب بنجاح', 'success');
 }
 
 // تحديث شريط التقدم للمدرب
@@ -388,6 +383,51 @@ function showModal(title, message, type) {
   modalBox.classList.add('animate__bounceIn');
 }
 
+// تحديث جدول اللاعبين في لوحة تحكم المدرب مع الرانك الديناميكي
+function updateAdminPlayersTable() {
+  const tableBody = document.getElementById('adminPlayersTable');
+  tableBody.innerHTML = '';
+
+  // ترتيب اللاعبين حسب النقاط (تنازلياً)
+  const sortedPlayers = Object.entries(defaultPlayersData)
+    .filter(([id, player]) => !player.isAdmin)
+    .sort((a, b) => {
+      if (b[1].points !== a[1].points) return b[1].points - a[1].points;
+      return a[1].name.localeCompare(b[1].name);
+    });
+
+  sortedPlayers.forEach(([id, player], index) => {
+    const row = document.createElement('tr');
+
+    // عمود المعرف
+    const idCell = document.createElement('td');
+    idCell.textContent = id;
+    row.appendChild(idCell);
+
+    // عمود الاسم
+    const nameCell = document.createElement('td');
+    nameCell.textContent = player.name;
+    row.appendChild(nameCell);
+
+    // عمود الرانك (الترتيب)
+    const rankCell = document.createElement('td');
+    rankCell.textContent = index + 1;
+    row.appendChild(rankCell);
+
+    // عمود النقاط
+    const pointsCell = document.createElement('td');
+    pointsCell.textContent = player.points;
+    row.appendChild(pointsCell);
+
+    // عمود الغيابات
+    const absencesCell = document.createElement('td');
+    absencesCell.textContent = player.absences;
+    row.appendChild(absencesCell);
+
+    tableBody.appendChild(row);
+  });
+}
+
 // إغلاق نافذة التنبيه
 function closeModal() {
   const modal = document.getElementById('modalOverlay');
@@ -401,3 +441,4 @@ function closeModal() {
     modalBox.classList.remove('animate__fadeOut');
   }, 300);
 }
+
