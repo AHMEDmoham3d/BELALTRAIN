@@ -443,7 +443,7 @@ function openResource(type) {
     modalIcon.style.color = 'var(--accent-color)';
 
     // Embed local videos with lazy loading
-    const videoSources = ['leg1.mp4', 'leg2.mp4', 'leg3.mp4', 'leg5.mp4', 'leg6.mp4', 'leg7.mp4', 'leg8.mp4', 'leg9.mp4', 'leg10.mp4'];
+    const videoSources = ['leg1.mp4', 'leg2.mp4', 'leg3.mp4', 'leg5.mp4', 'leg6.mp4', 'leg7.mp4', 'leg8.mp4', 'leg9.mp4', 'leg10.mp4','leg11.mp4'];
     modalMessage.innerHTML = `
       <div class="videos-container"
            style="max-height: 400px;
